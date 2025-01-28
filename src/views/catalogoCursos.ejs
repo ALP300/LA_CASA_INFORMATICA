@@ -1,134 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
-    
+
     <style>
-       body {
-            background-color: #A3D5E5; /* Color celeste */
-            color: white; /* Color de texto blanco por defecto */
-            margin: 0; /* Eliminar márgenes por defecto del body */
-        }
+      body {
+        background-color: #a3d5e5; /* Color celeste */
+        color: white; /* Color de texto blanco por defecto */
+        margin: 0; /* Eliminar márgenes por defecto del body */
+      }
+      .card {
+        background-color: #2d3748; /* Color de fondo de la tarjeta */
+        border-radius: 8px; /* Bordes redondeados */
+        padding: 10px; /* Espaciado interno reducido */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+        transition: transform 0.2s; /* Efecto de transición */
+        flex: 1 1 calc(25% - 20px); /* Cuatro tarjetas por fila */
+        margin: 30px; /* Espaciado entre las tarjetas */
+        max-width: 500px; /* Tamaño máximo de las tarjetas */
+      }
+
+      /* Media query para pantallas más pequeñas (como móviles) */
+      @media (max-width: 768px) {
         .card {
-    background-color: #2D3748; /* Color de fondo de la tarjeta */
-    border-radius: 8px; /* Bordes redondeados */
-    padding: 10px; /* Espaciado interno reducido */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
-    transition: transform 0.2s; /* Efecto de transición */
-    flex: 1 1 calc(25% - 20px); /* Cuatro tarjetas por fila */
-    margin: 30px; /* Espaciado entre las tarjetas */
-    max-width: 500px; /* Tamaño máximo de las tarjetas */
-}
-
-/* Media query para pantallas más pequeñas (como móviles) */
-@media (max-width: 768px) {
-    .card {
-        flex: 1 1 calc(50% - 20px); /* Dos tarjetas por fila */
-    }
-}
-
-@media (max-width: 480px) {
-    .card {
-        flex: 1 1 100%; /* Una tarjeta por fila en pantallas muy pequeñas */
-    }
-}
-
-        
-        .card img {
-            max-width: 100%; /* Imagen responsive */
-            border-radius: 8px; /* Bordes redondeados de la imagen */
+          flex: 1 1 calc(50% - 20px); /* Dos tarjetas por fila */
         }
-        .card-container {
-            display: flex; /* Utiliza flexbox para la disposición */
-            flex-wrap: wrap; /* Permite que las tarjetas se muevan a la siguiente línea */
-            justify-content: center; /* Centra las tarjetas en el contenedor */
+      }
+
+      @media (max-width: 480px) {
+        .card {
+          flex: 1 1 100%; /* Una tarjeta por fila en pantallas muy pequeñas */
         }
-        h1 {
-            color: black; /* Cambiar el color del encabezado a negro */
-        }
+      }
+
+      .card img {
+        max-width: 100%; /* Imagen responsive */
+        border-radius: 8px; /* Bordes redondeados de la imagen */
+      }
+      .card-container {
+        display: flex; /* Utiliza flexbox para la disposición */
+        flex-wrap: wrap; /* Permite que las tarjetas se muevan a la siguiente línea */
+        justify-content: center; /* Centra las tarjetas en el contenedor */
+      }
+      h1 {
+        color: black; /* Cambiar el color del encabezado a negro */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <%- include('partials/navigation') %>
 
     <main class="flex min-h-screen flex-col items-center">
-        <h1 class="text-4xl font-bold text-center my-6">
-            CATÁLOGO DE CURSOS
-        </h1>
-    
-        <div class="card-container">
-            <div class="card">
-                <img src="/img/javascript.jpg" alt="Curso de JavaScript" /><br>
-                <h2 class="text-xl font-semibold text-center">Curso de JavaScript</h2><br>
-                <p class="text-gray-300"><strong>PRECIO: 120 soles<br>Duración: 2 meses (Noviembre y Diciembre)</strong></p>
-                
-               <br>
-                <p class="text-gray-300">Aprenderás JavaScript desde cero hasta crear y desplegar aplicaciones web, con proyectos prácticos, manejo de Git y GitHub, y desarrollo backend con Node.js. Todo con clases grabadas para avanzar a tu ritmo.</p>
-                <div class="flex justify-center mt-4">
-                    <a href="informacionJavascript" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block">
-                        Más información
-                    </a>
-                </div><br>
-            </div>
-            <div class="card">
-                <img src="/img/python.jpg" alt="Curso de Python" /><br>
-                <h2 class="text-xl font-semibold text-center">Curso de Python</h2><br>
-                <p class="text-gray-300"><strong>PRECIO: 120 soles<br>Duración: 2 meses (Noviembre y Diciembre)</strong></p><br>
-                <p class="text-gray-300"> Aprende desde cero y aplica tus conocimientos en proyectos prácticos. Explora estructuras de control, funciones, POO, y herramientas como Git, Pandas y NumPy. Clases grabadas disponibles. ¡Únete ahora!</p>
-                <div class="flex justify-center mt-4">
-                    <a href="informacionPython" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block">
-                        Más información
-                    </a>
-                </div><br>
-            </div>
-            
-            
+      <h1 class="text-4xl font-bold text-center my-6">CATÁLOGO DE CURSOS</h1>
+
+      <div class="container mt-4">
+      <div class= "row" id="mostrarCursos" >
+      </div>
         </div>
-        <div class="card-container">
-            <div class="card">
-                <img src="/img/java.jpg" alt="Curso de Java" /><br>
-                <h2 class="text-xl font-semibold text-center">Curso de Java</h2><br>
-                <p class="text-gray-300"><strong>PRECIO: 120 soles<br>Duración: 2 meses (Noviembre y Diciembre)</strong></p><br>
-                <p class="text-gray-300">Aprende Java desde lo básico hasta el desarrollo de aplicaciones web con Spring Boot. Explora variables, estructuras de control, POO, interfaces, y abstracción. Luego, profundiza en Spring Boot y bases de datos, culminando con un proyecto práctico integrador. ¡Ideal para quienes quieren dominar Java!</p><br>
-               <div class="flex justify-center mt-4">
-                    <a href="informacionJava" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block">
-                        Más información
-                    </a>
-                </div><br>
-            </div>
-            <div class="card">
-                <img src="/img/movil.jpg" alt="Curso de Desarrollo de Aplicaciones Móviles" /><br>
-                <h2 class="text-xl font-semibold text-center">Curso de Desarrollo de Aplicaciones Móviles</h2><br>
-                <p class="text-gray-300"><strong>PRECIO: 120 soles<br>Duración: 2 meses (Noviembre y Diciembre)</strong></p><br>
-               
-                <p class="text-gray-300">Aprende a desarrollar aplicaciones móviles con React Native y Expo. Cubre componentes, estado, consumo de APIs, manejo de eventos, estado global con Zustand y mapas interactivos. Termina el curso con un proyecto final práctico. ¡Ideal para crear apps móviles desde cero!</p>
-                <div class="flex justify-center mt-4">
-                    <a href="informacionMovil" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block">
-                        Más información
-                    </a>
-                </div><br>
-            </div>
-            
-            
-        </div>
-        <div class="card-container">
-            <div class="card">
-                <img src="/img/riac.jpg" alt="Curso de React" /><br>
-                <h2 class="text-xl font-semibold text-center">Curso de React</h2><br>
-                <p class="text-gray-300"><strong>PRECIO: 120 soles<br>Duración: 2 meses (Noviembre y Diciembre)</strong></p><br>
-                <p class="text-gray-300">Aprende a construir aplicaciones web dinámicas usando React. Cubre componentes funcionales, manejo de estado con hooks, eventos, formularios, integración de APIs, y despliegue. Además, incluye introducción a TypeScript y Tailwind CSS. Finaliza con un proyecto práctico y feedback.</p>
-                <div class="flex justify-center mt-4">
-                    <a href="informacionReact" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block">
-                        Más información
-                    </a>
-                </div><br>
-            </div>
+
+      
+        <script>
+            async function getCursos() {
+                try {
+                    const response = await fetch(
+                        "http://localhost:3000/api/get-cursos",
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    );
+                    const cursos = await response.json();
+                    const mostrarCursosDiv = document.getElementById('mostrarCursos');
+                    let rowDiv;
         
-        </div>
-    </main><br><br>
+                    cursos.forEach((curso, index) => {
+                        if (index % 3 === 0) {
+                            rowDiv = document.createElement('div');
+                            rowDiv.classList.add('row', 'mb-4');
+                            mostrarCursosDiv.appendChild(rowDiv);
+                        }
+        
+                        const cursoDiv = document.createElement('div');
+                        cursoDiv.classList.add('col-md-3', 'mb-4');
+                        cursoDiv.innerHTML = `
+                            <div class="card" style="width: 18rem;">
+                                <img src="${curso.url}" class="card-img-top" alt="${curso.titulo}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${curso.titulo}</h5>
+                                    <p class="card-text">${curso.descripcion}</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                        `;
+                        rowDiv.appendChild(cursoDiv);
+                    });
+        
+                } catch (error) {
+                    console.error("Error al obtener cursos", error);
+                }
+            }
+        
+            getCursos();
+        </script>
+      
+    </main>
+    <br /><br />
 
     <%- include('partials/footer') %>
-</body>
+  </body>
 </html>

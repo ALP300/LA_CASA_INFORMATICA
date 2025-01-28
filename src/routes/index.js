@@ -1,4 +1,5 @@
 import { Router } from "express"
+import { ConsultarCursos } from "../public/services/conexion.js"
 
 const router= Router()
 
@@ -17,4 +18,8 @@ router.get('/informacionReact',(req,res)=> res.render('informacionReact',{title:
 router.get('/informacionMovil',(req,res)=> res.render('informacionMovil',{title: 'Movil' }))
 router.get('/bot',(req,res)=> res.render('bot',{title: 'Bot' }))
 
+router.get('/api/get-cursos', async (req,res)=>{
+    const cursos= await ConsultarCursos()
+    res.status(200).json(cursos)
+})
 export default router

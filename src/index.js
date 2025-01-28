@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import cors from 'cors'; // Importar cors
 
 import indexRoute from './routes/index.js';
-import { Conectar } from './services/conexion.mjs';
+import { Conectar } from './public/services/conexion.js';
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));

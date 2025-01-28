@@ -22,3 +22,15 @@ export async function Conectar() {
         console.log(error)
     }
 }
+
+export async function ConsultarCursos() {
+    const cliente= new Client(config)
+    try{
+        await cliente.connect()
+        const resultado= await cliente.query("SELECT * FROM cursos")
+        return resultado.rows;
+    }
+    catch(error){
+        console.log(error)
+    }
+}
