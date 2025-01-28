@@ -2,10 +2,9 @@ import express from 'express';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
-
 import indexRoute from './routes/index.js';
 import { Conectar } from './public/services/conexion.js';
-import { countReset } from 'console';
+
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
