@@ -14,12 +14,15 @@ app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 const corsOptions = {
-  origin: 'https://la-casa-informatica-6.onrender.com',
+  origin: '*', // Permite todas las conexiones
   optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
-// Usar rutas
+
+
+app.use(cors(corsOptions));
+
 app.use(indexRoute);
 
 
