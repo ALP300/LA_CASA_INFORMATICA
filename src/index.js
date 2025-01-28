@@ -13,9 +13,16 @@ app.use(express.json());
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+const corsOptions = {
+  origin: 'https://la-casa-informatica-6.onrender.com',
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 // Usar rutas
 app.use(indexRoute);
-app.use(cors());
+
+
 // Servir archivos estáticos
 app.use(express.static(join(__dirname, 'public')));
 
