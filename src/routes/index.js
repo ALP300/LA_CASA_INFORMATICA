@@ -17,6 +17,8 @@ router.get('/informacionJavascript',(req,res)=> res.render('informacionJavascrip
 router.get('/informacionReact',(req,res)=> res.render('informacionReact',{title: 'React' }))
 router.get('/informacionMovil',(req,res)=> res.render('informacionMovil',{title: 'Movil' }))
 router.get('/bot',(req,res)=> res.render('bot',{title: 'Bot' }))
+router.get('/iniciarSesion', (req, res) => res.render('iniciarSesion' ,{title:'IniciarSesion'}));
+router.get('/registrarCliente', (req, res) => res.render('registrarCliente' ,{title:'Registrar Cliente'}));
 
 router.get('/api/get-cursos', async (req,res)=>{
     const cursos= await ConsultarCursos()
