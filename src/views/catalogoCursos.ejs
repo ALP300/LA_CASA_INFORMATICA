@@ -1,115 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
-
+    
     <style>
-      body {
-        background-color: #a3d5e5; /* Color celeste */
-        color: white; /* Color de texto blanco por defecto */
-        margin: 0; /* Eliminar márgenes por defecto del body */
-      }
-      .card {
-        background-color: #2d3748; /* Color de fondo de la tarjeta */
-        border-radius: 8px; /* Bordes redondeados */
-        padding: 10px; /* Espaciado interno reducido */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
-        transition: transform 0.2s; /* Efecto de transición */
-        flex: 1 1 calc(25% - 20px); /* Cuatro tarjetas por fila */
-        margin: 30px; /* Espaciado entre las tarjetas */
-        max-width: 500px; /* Tamaño máximo de las tarjetas */
-      }
-
-      /* Media query para pantallas más pequeñas (como móviles) */
-      @media (max-width: 768px) {
-        .card {
-          flex: 1 1 calc(50% - 20px); /* Dos tarjetas por fila */
+       body {
+            background-color: #A3D5E5; /* Color celeste */
+            color: white; /* Color de texto blanco por defecto */
+            margin: 0; /* Eliminar márgenes por defecto del body */
         }
-      }
-
-      @media (max-width: 480px) {
         .card {
-          flex: 1 1 100%; /* Una tarjeta por fila en pantallas muy pequeñas */
-        }
-      }
+    background-color: #2D3748; /* Color de fondo de la tarjeta */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno reducido */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    transition: transform 0.2s; /* Efecto de transición */
+    flex: 1 1 calc(25% - 20px); /* Cuatro tarjetas por fila */
+    margin: 30px; /* Espaciado entre las tarjetas */
+    max-width: 500px; /* Tamaño máximo de las tarjetas */
+}
 
-      .card img {
-        max-width: 100%; /* Imagen responsive */
-        border-radius: 8px; /* Bordes redondeados de la imagen */
-      }
-      .card-container {
-        display: flex; /* Utiliza flexbox para la disposición */
-        flex-wrap: wrap; /* Permite que las tarjetas se muevan a la siguiente línea */
-        justify-content: center; /* Centra las tarjetas en el contenedor */
-      }
-      h1 {
-        color: black; /* Cambiar el color del encabezado a negro */
-      }
+/* Media query para pantallas más pequeñas (como móviles) */
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 calc(50% - 20px); /* Dos tarjetas por fila */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex: 1 1 100%; /* Una tarjeta por fila en pantallas muy pequeñas */
+    }
+}
+
+        
+        .card img {
+            max-width: 100%; /* Imagen responsive */
+            border-radius: 8px; /* Bordes redondeados de la imagen */
+        }
+        .card-container {
+            display: flex; /* Utiliza flexbox para la disposición */
+            flex-wrap: wrap; /* Permite que las tarjetas se muevan a la siguiente línea */
+            justify-content: center; /* Centra las tarjetas en el contenedor */
+        }
+        h1 {
+            color: black; /* Cambiar el color del encabezado a negro */
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <%- include('partials/navigation') %>
 
     <main class="flex min-h-screen flex-col items-center">
-      <h1 class="text-4xl font-bold text-center my-6">CATÁLOGO DE CURSOS</h1>
-
-      <div class="container mt-4">
-      <div class= "row" id="mostrarCursos" >
-      </div>
+        <h1 class="text-4xl font-bold text-center my-6">
+            CATÁLOGO DE CURSOS
+        </h1>
+    
+        <div class="card-container">
+            <div class="card">
+                <img src="/img/python.jpg" alt="Curso de Programación en Python" />
+                <h2 class="text-xl font-semibold">Curso de Programación en Python</h2>
+                <p class="text-gray-300">Aprende los fundamentos de la programación utilizando Python.</p>
+                <a href="informacionPython" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded inline-block">
+                    Más información
+                </a>
+                
+            </div>
+            <div class="card">
+                <img src="/img/java.jpg" alt="Taller de Desarrollo Web" />
+                <h2 class="text-xl font-semibold">Curso de Java</h2>
+                <p class="text-gray-300">Crea tu primer sitio web con HTML, CSS y JavaScript.</p>
+                <a href="informacionJava" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded inline-block">
+                    Más información
+                </a>
+            </div>
         </div>
-
-      
-        <script>
-            async function getCursos() {
-                try {
-                    const response = await fetch(
-                        "https://la-casa-informatica-1.onrender.com/api/get-cursos",
-                        {
-                            method: "GET",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                        }
-                    );
-                    const cursos = await response.json();
-                    const mostrarCursosDiv = document.getElementById('mostrarCursos');
-                    let rowDiv;
-        
-                    cursos.forEach((curso, index) => {
-                        if (index % 3 === 0) {
-                            rowDiv = document.createElement('div');
-                            rowDiv.classList.add('row', 'mb-4');
-                            mostrarCursosDiv.appendChild(rowDiv);
-                        }
-        
-                        const cursoDiv = document.createElement('div');
-                        cursoDiv.classList.add('col-md-3', 'mb-4');
-                        cursoDiv.innerHTML = `
-                            <div class="card" style="width: 18rem;">
-                                <img src="${curso.url}" class="card-img-top" alt="${curso.titulo}">
-                                <div class="card-body">
-                                    <h5 class="card-title">${curso.titulo}</h5>
-                                    <p class="card-text">${curso.descripcion}</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        `;
-                        rowDiv.appendChild(cursoDiv);
-                    });
-        
-                } catch (error) {
-                    console.error("Error al obtener cursos", error);
-                }
-            }
-        
-            getCursos();
-        </script>
-      
-    </main>
-    <br /><br />
+        <div class="card-container">
+            <div class="card">
+                <img src="/img/react.jpeg" alt="Taller de Diseño Gráfico" />
+                <h2 class="text-xl font-semibold">Curso de React</h2>
+                <p class="text-gray-300">Explora las herramientas y técnicas del diseño gráfico moderno.</p>
+                <a href="informacionReact" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded inline-block">
+                    Más información
+                </a>
+            </div>
+            <div class="card">
+                <img src="/img/javascript.jpg" alt="Taller de Marketing Digital" />
+                <h2 class="text-xl font-semibold">Curso de JavaScript</h2>
+                <p class="text-gray-300">Descubre estrategias efectivas de marketing en línea.</p>
+                <a href="informacionJavascript" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded inline-block">
+                    Más información
+                </a>
+            </div>
+        </div>
+    </main><br><br>
 
     <%- include('partials/footer') %>
-  </body>
+</body>
 </html>
